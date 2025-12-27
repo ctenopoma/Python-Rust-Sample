@@ -14,3 +14,23 @@ wheels/
 .vscode/
 .specify/
 .prompt/
+specs/
+# Rust build artifacts
+target/
+debug/
+release/
+
+# Logs and env files
+*.log
+.env*
+
+# Coverage and reports
+coverage/
+*.coverage
+
+# OS/editor junk
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
