@@ -80,7 +80,7 @@ wheels = [
 ]
 
 [[package]]
-name = "python-rust"
+name = "python_rust"
 version = "0.1.0"
 source = { editable = "." }
 
@@ -91,6 +91,11 @@ dev = [
     { name = "ruff" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "pyrefly" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "pyrefly", marker = "extra == 'dev'" },
@@ -98,6 +103,9 @@ requires-dist = [
     { name = "ruff", marker = "extra == 'dev'" },
 ]
 provides-extras = ["dev"]
+
+[package.metadata.requires-dev]
+dev = [{ name = "pyrefly", specifier = ">=0.46.1" }]
 
 [[package]]
 name = "ruff"

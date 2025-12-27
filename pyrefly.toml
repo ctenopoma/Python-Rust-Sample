@@ -1,0 +1,11 @@
+[project]
+# Pyrefly configuration for python-rust project
+
+[tool.pyrefly]
+python-version = "3.14"
+type-checking-mode = "basic"
+import-roots = [
+    "python",
+    "tests",
+]
+
