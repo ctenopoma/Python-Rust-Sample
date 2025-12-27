@@ -14,16 +14,11 @@ pyo3 = { version = "0.22", features = ["extension-module"] }
 lto = true
 codegen-units = 1
 
-[lints. rust]
+[lints.rust]
 unsafe_code = "forbid"
 missing_docs = "warn"
 
 [lints.clippy]
-# デフォルトで有効にするlint
 all = "warn"
 pedantic = "warn"
 nursery = "warn"
-
-# 特定のlintを無効化（必要に応じて）
-# module_name_repetitions = "allow"
-# missing_errors_doc = "allow"
