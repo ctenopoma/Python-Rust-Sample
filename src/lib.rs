@@ -69,7 +69,7 @@ pub fn fibonacci(n: u32) -> u64 {
 /// Python module exposing the Rust Fibonacci function.
 ///
 /// This module provides high-performance Fibonacci calculations to Python
-/// through PyO3 bindings. The Rust function is exposed as `fibonacci_rust`.
+/// through `PyO3` bindings. The Rust function is exposed as `fibonacci_rust`.
 #[pymodule]
 fn python_rust(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(fibonacci, m)?)?;
