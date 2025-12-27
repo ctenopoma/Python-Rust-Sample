@@ -12,7 +12,6 @@
 //! assert_eq!(result, 55);
 //! ```
 
-#[allow(unused_imports)]
 use pyo3::prelude::*;
 
 /// Calculate the nth Fibonacci number using an iterative algorithm.
@@ -49,6 +48,7 @@ use pyo3::prelude::*;
 ///
 /// The maximum safe input is n = 93, which produces fib(93) = 12,200,160,415,121,876,738.
 /// Values beyond this will overflow u64 capacity.
+#[pyfunction]
 #[must_use]
 pub fn fibonacci(n: u32) -> u64 {
     match n {
@@ -66,3 +66,12 @@ pub fn fibonacci(n: u32) -> u64 {
     }
 }
 
+/// Python module exposing the Rust Fibonacci function.
+///
+/// This module provides high-performance Fibonacci calculations to Python
+/// through PyO3 bindings. The Rust function is exposed as `fibonacci_rust`.
+#[pymodule]
+fn python_rust(m: &Bound<'_, PyModule>) -> PyResult<()> {
+    m.add_function(wrap_pyfunction!(fibonacci, m)?)?;
+    Ok(())
+}

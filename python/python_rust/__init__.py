@@ -31,3 +31,5 @@ __all__ = [
 # Import Rust implementation from compiled extension
 # The compiled module exposes fibonacci function
 from .python_rust import fibonacci as fibonacci_rust
+# Type hint for Rust function
+fibonacci_rust: callable[[int], int]

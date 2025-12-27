@@ -16,3 +16,7 @@ dev = [
 [build-system]
 requires = ["maturin>=1.0"]
 build-backend = "maturin"
+
+[tool.maturin]
+python-source = "python"
+module-name = "python_rust.python_rust"
