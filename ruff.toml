@@ -1,0 +1,19 @@
+line-length = 100
+# Ruff supports up to Python 3.12; use the latest available while targeting >=3.14.
+target-version = "py312"
+
+[lint]
+select = [
+    "E4", "E7", "E9", "F",  # core errors
+    "I",                        # import sorting
+    "UP",                       # modernize syntax
+    "B",                        # bugbear
+    "A",                        # builtins safety
+    "C4",                       # comprehension rules
+    "SIM",                      # simplify
+]
+extend-ignore = ["E203"]
+
+[lint.isort]
+known-first-party = ["python_rust"]
+combine-as-imports = true

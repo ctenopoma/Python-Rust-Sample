@@ -1,0 +1,7 @@
+# .cargo/config.toml
+[target.x86_64-pc-windows-msvc]
+rustflags = ["-D", "warnings"]
+
+[alias]
+lint = "clippy -- -D warnings"
+lint-fix = "clippy --fix"
