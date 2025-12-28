@@ -2,6 +2,7 @@
 
 This module provides:
 - fibonacci_python: Naive recursive implementation for performance comparison
+- fibonacci_python_iterative: Iterative implementation for efficient use
 - benchmark: Utility to compare Rust and Python implementations
 
 Example:
@@ -42,6 +43,27 @@ def fibonacci_python(n: int) -> int:
     if n <= 1:
         return n
     return fibonacci_python(n - 1) + fibonacci_python(n - 2)
+
+
+def fibonacci_python_iterative(n: int) -> int:
+    """Calculate Fibonacci number using an iterative algorithm.
+
+    This implementation runs in O(n) time and O(1) space, making it suitable
+    for regular use and direct comparison with the Rust iterative version.
+
+    Args:
+        n: The index in the Fibonacci sequence to calculate.
+
+    Returns:
+        The nth Fibonacci number.
+    """
+    if n <= 1:
+        return n
+
+    a, b = 0, 1
+    for _ in range(2, n + 1):
+        a, b = b, a + b
+    return b
 
 
 def benchmark(n: int = 35, runs: int = 5) -> None:
@@ -95,6 +117,45 @@ def benchmark(n: int = 35, runs: int = 5) -> None:
 
     # Print formatted results
     print(f"Fibonacci({n}):")
+    print(f"  Rust:   {rust_time:.6f}s")
+    print(f"  Python: {python_time:.6f}s")
+    print(f"  Speedup: {speedup:.1f}x")
+
+
+def benchmark_iterative(n: int = 35, runs: int = 5) -> None:
+    """Compare execution time of Rust and Python iterative Fibonacci implementations.
+
+    Uses the efficient Python iterative implementation to provide an apples-to-
+    apples comparison with the Rust iterative binding.
+
+    Args:
+        n: The Fibonacci index to benchmark (default: 35).
+           For larger n, both implementations remain fast; choose based on
+           desired workload.
+        runs: Number of timing iterations to average (default: 5).
+
+    Prints:
+        Execution times for both implementations and the speedup ratio.
+    """
+    try:
+        from python_rust import fibonacci_rust  # type: ignore
+    except ImportError as e:
+        msg = "Rust extension not built. Run 'maturin develop' first."
+        raise ImportError(msg) from e
+
+    rust_time = timeit.timeit(
+        lambda: fibonacci_rust(n),  # type: ignore
+        number=runs,
+    ) / runs
+
+    python_time = timeit.timeit(
+        lambda: fibonacci_python_iterative(n),
+        number=runs,
+    ) / runs
+
+    speedup = python_time / rust_time
+
+    print(f"Fibonacci({n}) iterative:")
     print(f"  Rust:   {rust_time:.6f}s")
     print(f"  Python: {python_time:.6f}s")
     print(f"  Speedup: {speedup:.1f}x")

@@ -29,4 +29,5 @@ type-checking-mode = "basic"
 [dependency-groups]
 dev = [
     "pyrefly>=0.46.1",
+    "pytest>=9.0.2",
 ]
