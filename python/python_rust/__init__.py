@@ -22,17 +22,28 @@ from __future__ import annotations
 __version__ = "0.1.0"
 __author__ = "Rust-Python Team"
 
-# Import Python implementation and benchmark utility
-from .fibonacci import benchmark, fibonacci_python  # type: ignore # noqa: F401
+# Import Python implementations and benchmark utility
+from .fibonacci import (  # type: ignore # noqa: F401
+    benchmark,
+    benchmark_iterative,
+    fibonacci_python,
+    fibonacci_python_iterative,
+)
 
 # Import Rust implementation from compiled extension
 # The compiled module exposes fibonacci function
-from .python_rust import fibonacci as fibonacci_rust  # type: ignore # noqa: F401
+from .python_rust import (
+    fibonacci as fibonacci_rust,  # type: ignore # noqa: F401
+    fibonacci_iterative as fibonacci_rust_iterative,  # type: ignore # noqa: F401
+)
 
 __all__ = [
     "benchmark",
+    "benchmark_iterative",
     "fibonacci_python",
+    "fibonacci_python_iterative",
     "fibonacci_rust",
+    "fibonacci_rust_iterative",
 ]
 
 
